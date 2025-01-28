@@ -12,6 +12,7 @@ import sk.streetofcode.productordermanagement.implementation.repository.ProductR
 import sk.streetofcode.productordermanagement.implementation.repository.ShoppingListRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -70,8 +71,17 @@ public class OrderServiceImpl implements OrderService {
         if (available < request.getAmount()) {
             throw new BadRequestException("Insufficient product");
         }
-        productRepository.transferToShoppingList(request.getProductId(), request.getAmount());
-        shoppingListRepository.insertShoppingList(id, request);
+        if (getById(id).getShoppingList().stream().map(ShoppingList::getProductId).noneMatch(n -> n == request.getProductId())) {
+            productRepository.transferToShoppingList(request.getProductId(), request.getAmount());
+            shoppingListRepository.insertShoppingList(id, request);
+        } else {
+            for (ShoppingList shoppingList : getById(id).getShoppingList()) {
+                if (request.getProductId() == shoppingList.getProductId()) {
+                    shoppingListRepository.updateAmount(shoppingList.getId(), shoppingList.getAmount() + request.getAmount());
+                    productRepository.transferToShoppingList(request.getProductId(), request.getAmount());
+                }
+            }
+        }
     }
 
     @Override
