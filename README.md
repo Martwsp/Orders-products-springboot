@@ -1,25 +1,20 @@
 # Spring Boot zadanie starter pack
 ## Street of Code - Java kurz
 ### Popis systému
-Aplikačný server umožňuje spravovať produkty a objednávky.
-Webové rozhranie (API), ako aj objekty, ktoré sa používajú na komunikáciu,
-sú zadefinované v zadanej špecifikácii.
+Aplikační server umožňuje spravovat produkty a objednávky. Webové rozhraní (API), stejně jako objekty používané pro komunikaci, jsou definovány v dané specifikaci.
 
-Špecifikácia API je dostupná na adrese: https://app.swaggerhub.com/apis-docs/JAHICJAKUB/Street_of_Code_Spring_Boot_zadanie/1.0.0
+Specifikace API je dostupná na adrese: https://app.swaggerhub.com/apis-docs/JAHICJAKUB/Street_of_Code_Spring_Boot_zadanie/1.0.0
 
-Systém umožňuje vytvárania a odoberanie produktov. Ďalej umožňuje
-úpravu existujúcich produktov, ako aj navýšenie stavu produktov na sklade.
+Systém umožňuje vytváření a odebírání produktů. Dále umožňuje úpravu existujících produktů, stejně jako zvýšení stavu produktů na skladě.
 
-Systém umožňuje vytváranie a vymazávanie objednávok. Do objednávok je možné
-primárne pridávať produkty, ktoré sú dostupné na sklade. Pre prípad nedostatku 
-tovaru na sklade bude odpoveďou chybový kód 400.
+Systém umožňuje vytváření a mazání objednávek. Do objednávek je možné primárně přidávat produkty, které jsou dostupné na skladě. V případě nedostatku zboží na skladě bude odpovědí chybový kód 400.
 
-Systém umožňuje zaplatenie objednávky. Po zaplatení objednávky sa zmení jej stav
-na `paid`. Do zaplatenej objednávky nie je možné pridávať produkty.
+Systém umožňuje zaplacení objednávky. Po zaplacení objednávky se změní její stav na `paid`. 
+Do zaplacené objednávky již není možné přidávat produkty.
 
 ### Automatizované testy
-Systém obsahuje automatizované integračné testy, ktoré sú umiestnené v priečinku `src/test/java`.
-Testy testujú funkčnosť API. Nie je potrebné pridávať ďalšie testy ani ich nijak meniť.
+Systém obsahuje automatizované integrační testy, které se nacházejí ve složce `src/test/java`.
+Testy testují funkčnost API. Není potřeba přidávat další testy ani je jinak upravovat.
 
-Ak všetky testy prechádzajú, tak je aplikácia správne naimplementovaná.
+Pokud všechny testy projdou, znamená to, že aplikace byla správně implementována.
 # Orders-products-springboot

@@ -29,7 +29,10 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAll() {
         List<Order> orders = repository.getAll();
         for (Order order : orders) {
-            order.setShoppingLists(shoppingListRepository.getByOrder(order.getId()));
+            List<ShoppingList> shoppingLists = shoppingListRepository.getByOrder(order.getId());
+            for (ShoppingList shoppingList : shoppingLists) {
+                order.addShoppingList(shoppingList);
+            }
         }
         return orders;
     }
@@ -37,7 +40,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order getById(long id) {
         Order order = repository.getById(id);
-        order.setShoppingLists(shoppingListRepository.getByOrder(order.getId()));
+        List<ShoppingList> shoppingLists = shoppingListRepository.getByOrder(order.getId());
+        for (ShoppingList shoppingList : shoppingLists) {
+            order.addShoppingList(shoppingList);
+        }
         return order;
     }
 
