@@ -12,7 +12,6 @@ import sk.streetofcode.productordermanagement.implementation.repository.ProductR
 import sk.streetofcode.productordermanagement.implementation.repository.ShoppingListRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -55,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public double pay(long id) {
-        if (repository.getById(id).getPaymentStatus()) {
+        if (repository.getById(id).getPaid()) {
             throw new BadRequestException("Order already paid");
         }
         repository.updatePaid(id);
@@ -64,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void addShoppingList(long id, OrderAddShoppingListRequest request) {
-        if (getById(id).getPaymentStatus()) {
+        if (getById(id).getPaid()) {
             throw new BadRequestException("Order is already paid and can't be updated.");
         }
         long available = productRepository.getAmount(request.getProductId());

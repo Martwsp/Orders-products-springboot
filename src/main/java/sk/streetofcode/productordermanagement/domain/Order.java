@@ -10,7 +10,7 @@ import java.util.List;
 public class Order {
     long id;
     List<ShoppingList> shoppingList = new ArrayList<>(Collections.emptyList());
-    Boolean paymentStatus;
+    Boolean Paid;
 
     public void addShoppingList(ShoppingList shoppingList) {
         this.shoppingList.add(shoppingList);

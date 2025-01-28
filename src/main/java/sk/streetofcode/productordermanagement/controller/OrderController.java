@@ -58,8 +58,8 @@ public class OrderController {
             @ApiResponse(responseCode = "404", description = "Order not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<Double> pay(@PathVariable("id") long id) {
-     return ResponseEntity.ok().body(orderService.pay(id));
+    public ResponseEntity<String> pay(@PathVariable("id") long id) {
+     return ResponseEntity.ok().body(String.format("%.1f", orderService.pay(id)));
     }
 
 
