@@ -25,12 +25,14 @@ public class ShoppingListRepository {
     private static final Logger logger;
     private static final String GET_BY_ORDER;
     private static final String INSERT;
+    private static final String UPDATE_AMOUNT;
     private static final String DELETE;
 
     static {
         logger = LoggerFactory.getLogger(ShoppingListRepository.class);
         GET_BY_ORDER = "SELECT * FROM shopping_list WHERE order_id = ?";
         INSERT = "INSERT INTO shopping_list (id, order_id, product_id, amount) VALUES (next value for shopping_list_id_seq, ?, ?, ?)";
+        UPDATE_AMOUNT = "UPDATE shopping_list SET amount = ? WHERE id = ?";
         DELETE = "DELETE FROM shopping_list WHERE id = ?";
 
     }
@@ -71,6 +73,15 @@ public class ShoppingListRepository {
         } catch (DataAccessException e) {
             logger.error("Error while adding shopping list");
             throw new InternalErrorException("Error while adding shopping list");
+        }
+    }
+
+    public void updateAmount(long id, long newAmount){
+        try {
+            jdbcTemplate.update(UPDATE_AMOUNT, newAmount, id);
+        } catch (DataAccessException e) {
+            logger.error("Error while updating product", e);
+            throw new InternalErrorException("Error while updating product");
         }
     }
 
